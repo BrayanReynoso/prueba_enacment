@@ -31,18 +31,18 @@
   bottom: 0;
   width: 100%;
   background-color: white;
-  z-index: 999; /* Asegura que el footer esté por encima de otros elementos */
-  border-top: 1px solid #ccc; /* Agrega un borde superior para separarlo del contenido */
-  display: flex; /* Usa flexbox para alinear los elementos */
-  justify-content: center; /* Centra horizontalmente los elementos */
-  align-items: center; /* Centra verticalmente los elementos */
+  z-index: 999;
+  border-top: 1px solid #ccc; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .footer-background ion-button {
-  margin: 0; /* Elimina el margen entre los botones */
+  margin: 0; 
 }
 
 .footer-background span {
   color: #8c8c8c;
-  padding: 5px; /* Espacio alrededor del texto */
+  padding: 5px; 
 }

@@ -37,26 +37,20 @@ export class HomePage {
     if (this.userInput < 0) {
       return; // Detiene la ejecución de la función
     }
-
     const loading = await this.loadingController.create({
       message: 'Calculando múltiplos...',
     });
     await loading.present();
-
-
-
     // Reinicia la lista de números y colores
     this.multiplesList = [];
-
     // Genera los números entre 0 y el número ingresado por el usuario
     for (let i = 0; i <= this.userInput; i++) {
       let color = 'black'; // Por defecto, el color es negro
-
       // Encuentra los múltiplos del 3, 5 y 7 y asigna el color correspondiente
       if (i % 3 === 0) {
         color = 'green'; // Múltiplos del 3 en verde
       }
-      if (i % 5 === 0 && color !== 'green') { // Si ya es verde, no cambia el color
+      if (i % 5 === 0 && color !== 'green') { 
         color = 'red'; // Múltiplos del 5 en rojo
       }
       if (i % 7 === 0 && color !== 'green' && color !== 'red') { // Si ya es verde o rojo, no cambia el color
@@ -112,7 +106,6 @@ export class HomePage {
     if (page < 1 || page > this.totalPages) {
       return;
     }
-
     // Actualiza la página actual y la lista paginada
     this.currentPage = page;
     this.updatePaginatedList();
