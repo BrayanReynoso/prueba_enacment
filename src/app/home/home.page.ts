@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonItem, IonLabel, IonInput, IonList, IonBadge, IonListHeader, IonNote} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonItem, IonLabel, IonInput, IonList, IonBadge, IonListHeader, IonNote, LoadingController } from '@ionic/angular/standalone';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,7 @@ export class HomePage {
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore,private loadingController: LoadingController) {}
 
   isInteger(value: number): boolean {
     return Number.isInteger(value);
@@ -32,11 +32,18 @@ export class HomePage {
    * encuentra sus múltiplos de 3, 5 y 7, y los despliega en pantalla
    * con los colores correspondientes.
    */
-  generateNumbersAndMultiples() {
+  async generateNumbersAndMultiples() {
     // Comprueba si el número ingresado es negativo
     if (this.userInput < 0) {
       return; // Detiene la ejecución de la función
     }
+
+    const loading = await this.loadingController.create({
+      message: 'Calculando múltiplos...',
+    });
+    await loading.present();
+
+
 
     // Reinicia la lista de números y colores
     this.multiplesList = [];
@@ -65,6 +72,7 @@ export class HomePage {
 
     // Actualiza la lista paginada
     this.updatePaginatedList();
+    await loading.dismiss();
     this.saveToDatabase();
   }
   /**

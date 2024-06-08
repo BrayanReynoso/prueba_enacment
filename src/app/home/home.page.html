@@ -34,38 +34,29 @@
   </ion-list>
   <div class="input-container">
     <ion-item>
-      <ion-input
-        [(ngModel)]="userInput"
-        type="number"
-        label="Ingresa un número:"
-        labelPlacement="floating"
-      ></ion-input>
+      <ion-input [(ngModel)]="userInput" type="number" label="Ingresa un número:" labelPlacement="floating"></ion-input>
     </ion-item>
-    <ion-row>
+    <ion-row class="ion-align-items-center">
       <ion-col>
-        <ion-button color="danger" expand="block" (click)="clearData()"
-          >Limpiar</ion-button
-        >
+        <ion-button color="danger" expand="block" (click)="clearData()">
+          Limpiar
+        </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button
-          expand="block"
-          [disabled]="!isInteger(userInput) || userInput < 0"
-          (click)="generateNumbersAndMultiples()"
-          >Enviar</ion-button
-        >
+        <ion-button expand="block" [disabled]="!isInteger(userInput) || userInput < 0"
+          (click)="generateNumbersAndMultiples()">
+          Enviar
+        </ion-button>
       </ion-col>
     </ion-row>
+
   </div>
 
   <ion-list class="results">
     <ion-text color="primary" class="ion-text-center">
       <h4>Resultado</h4>
     </ion-text>
-    <ion-item
-      *ngFor="let multiple of paginatedList"
-      [style.color]="multiple.color"
-    >
+    <ion-item *ngFor="let multiple of paginatedList" [style.color]="multiple.color">
       <ion-label>{{ multiple.value }}</ion-label>
     </ion-item>
   </ion-list>
@@ -73,17 +64,11 @@
 
 <ion-footer class="footer-background">
   <div class="pagination" *ngIf="totalPages > 1">
-    <ion-button
-      [disabled]="currentPage === 1"
-      (click)="goToPage(currentPage - 1)"
-    >
+    <ion-button size="small" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
       Anterior
     </ion-button>
     <span>Página {{ currentPage }} de {{ totalPages }}</span>
-    <ion-button
-      [disabled]="currentPage === totalPages"
-      (click)="goToPage(currentPage + 1)"
-    >
+    <ion-button size="small" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
       Siguiente
     </ion-button>
   </div>
