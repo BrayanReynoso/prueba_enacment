@@ -1,20 +1,90 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Multiplos </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" scrollY="true">
+  <ion-list class="color-description">
+    <ion-item>
+      <ion-label>
+        <ion-text color="success">Verde:</ion-text> Múltiplos de 3
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text color="danger">Rojo:</ion-text> Múltiplos de 5
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text color="primary">Azul:</ion-text> Múltiplos de 7
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text color="dark">Negro:</ion-text> No es múltiplo de 3, 5 o 7
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text color="medium">Extra:</ion-text> Si un número tiene más de un
+        multiplo se pintara del color del menor multiplo
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div class="input-container">
+    <ion-item>
+      <ion-input
+        [(ngModel)]="userInput"
+        type="number"
+        label="Ingresa un número:"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button color="danger" expand="block" (click)="clearData()"
+          >Limpiar</ion-button
+        >
+      </ion-col>
+      <ion-col>
+        <ion-button
+          expand="block"
+          [disabled]="!isInteger(userInput) || userInput < 0"
+          (click)="generateNumbersAndMultiples()"
+          >Enviar</ion-button
+        >
+      </ion-col>
+    </ion-row>
   </div>
+
+  <ion-list class="results">
+    <ion-text color="primary" class="ion-text-center">
+      <h4>Resultado</h4>
+    </ion-text>
+    <ion-item
+      *ngFor="let multiple of paginatedList"
+      [style.color]="multiple.color"
+    >
+      <ion-label>{{ multiple.value }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer class="footer-background">
+  <div class="pagination" *ngIf="totalPages > 1">
+    <ion-button
+      [disabled]="currentPage === 1"
+      (click)="goToPage(currentPage - 1)"
+    >
+      Anterior
+    </ion-button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <ion-button
+      [disabled]="currentPage === totalPages"
+      (click)="goToPage(currentPage + 1)"
+    >
+      Siguiente
+    </ion-button>
+  </div>
+</ion-footer>
