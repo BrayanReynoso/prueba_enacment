@@ -1,0 +1,6 @@
+projectKey=enacment
+serverUrl=http://localhost:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://localhost:9000/dashboard?id=enacment
+ceTaskId=8afe188e-4e8f-48a5-8c3b-e5265ec4c797
+ceTaskUrl=http://localhost:9000/api/ce/task?id=8afe188e-4e8f-48a5-8c3b-e5265ec4c797
